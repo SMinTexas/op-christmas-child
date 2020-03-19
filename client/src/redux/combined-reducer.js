@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import jwt from './jwt-verification/reducer';
+import reducer from './jwt-verification/reducer';
 
-export default combineReducers({ jwt })
+export default combineReducers({ jwt: reducer })

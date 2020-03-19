@@ -8,12 +8,27 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case types.ADD:
-            if (!action.token) return {...state, isAuthenticated: false, token: null, username: null }
-            return {...state, isAuthenticated: true, token: action.token, username: action.username }
+            if (!action.token)
+                return {
+                    ...state,
+                    isAuthenticated: false,
+                    token: null,
+                    username: null
+                };
+            return {
+                ...state,
+                isAuthenticated: true,
+                token: action.token,
+                username: action.username
+            };
         case types.REMOVE:
-            return {...state, isAuthenticated: false, token: null, username: null }
-        case types.VERIFY:
+            return {
+                ...state,
+                isAuthenticated: false,
+                token: null,
+                username: null
+            };
         default:
-            return {...state }
+            return {...state };
     }
 }

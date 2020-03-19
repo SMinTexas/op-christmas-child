@@ -6,8 +6,9 @@ router.get('/', function(req, res, next) {
     res.send('respond with a resource');
 });
 
-router.post('/register', (req, res) => {
+router.post('/', (req, res) => {
     res.send("Aggies 74 Swamp Kitties 72");
+    console.log("Aggies 74 Swamp Kitties 72")
     models.User.findOne({
             where: { username: req.body.username },
             attributes: ['id', 'username']
@@ -18,6 +19,9 @@ router.post('/register', (req, res) => {
                 existingUser: user
             });
             else {
+                console.log(req.body.username);
+                console.log(req.body.email);
+                console.log(req.body.password);
                 models.User.create({
                         username: req.body.username,
                         email: req.body.email,

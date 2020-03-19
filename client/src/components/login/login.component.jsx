@@ -9,14 +9,20 @@ class LogIn extends React.Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            hasError: false,
+            userMessage: ''
         };
+    }
+
+    validateForm() {
+        return this.state.username.length > 0 && this.state.password.length > 0;
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch('/api/users/login', {
+        fetch('/users/login', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -26,9 +32,14 @@ class LogIn extends React.Component {
         })
         .then(response => response.json())
         .then(json => {
-            if (json.error) return false
-            this.props.dispatch1(json.token, json.username)
-        }).catch(error => {})
+            if (json.error) {
+                this.setState({hasError:true,userMessage:json.error});
+                console.log('STATE:',this.state)
+                return false;
+            }
+            this.setState({userMessage:json.message})
+            this.props.dispatch1(json.token, json.username);
+        }).catch(error => {console.log(error)});
     }
 
     handleChange = event => {
@@ -38,7 +49,35 @@ class LogIn extends React.Component {
 
     render() {
         if (this.props.jwt.isAuthenticated === true) {
-            return <Redirect to='/tickets' />
+            return <Redirect to='/dashboard' />
+          }
+
+        if (this.state.hasError === true) {
+            return (
+                <div className="login-form-container">
+                    <form className='form' onSubmit={this.handleSubmit}>
+                        <input className='username-input'
+                            name='username'
+                            placeholder='Enter Username'
+                            onChange={this.handleChange}
+                            value=''
+                            label='UserName'
+                            required
+                        />
+                        <input className='password-input'
+                            name='password'
+                            type='password'
+                            placeholder='Enter Password'
+                            value=''
+                            onChange={this.handleChange}
+                            label='Password'
+                            required
+                        />
+                        <button className='submit'>Log In</button>
+                        <h6>{this.state.userMessage}</h6>
+                    </form>
+                </div>
+            );
         }
 
         return (
@@ -82,4 +121,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogIn)
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);
+

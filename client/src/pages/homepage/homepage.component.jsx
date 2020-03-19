@@ -1,6 +1,5 @@
 import React from 'react';
 import './homepage.styles.scss';
-//import SignIn from '../../components/login/login.component';
 import Splash from '../../components/splash/splash.component';
 //import logo from '../../assets/occ.jpeg';
 
@@ -13,7 +12,6 @@ class HomePage extends React.Component {
                 </div> */}
 
                 <div className='homepage'>
-                    {/* <SignIn /> */}
                     <Splash />
                 </div>
             </>
