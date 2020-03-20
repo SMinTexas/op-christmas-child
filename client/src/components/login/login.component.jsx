@@ -32,7 +32,7 @@ class LogIn extends React.Component {
         })
         .then(response => response.json())
         .then(json => {
-            if (json.error) {
+            if (json.err) {
                 this.setState({hasError:true,userMessage:json.error});
                 console.log('STATE:',this.state)
                 return false;
