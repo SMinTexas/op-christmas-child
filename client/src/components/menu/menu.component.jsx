@@ -40,7 +40,7 @@ class Menu extends Component {
   }
 
   render() {
-    console.log('this.props.jwt.isAuthenticated',this.props.jwt.isAuthenticated);
+    //console.log('this.props.jwt.isAuthenticated',this.props.jwt.isAuthenticated);
     if (this.props.jwt.isAuthenticated === true) {
       return (
         <section className="navigation">
@@ -51,8 +51,11 @@ class Menu extends Component {
                 <a id="nav-toggle" href="#!"><span></span></a>
               </div>
               <ul className="nav-list">
-                <li>
+                {/* <li>
                   <Link to="/">Home</Link>
+                </li> */}
+                <li>
+                  <Link to='/'>Add Inventory</Link>
                 </li>
                 <li>
                   <a onClick={e => this.handleLogoutClick()} >Logout</a>

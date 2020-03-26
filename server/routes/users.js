@@ -7,9 +7,10 @@ const helpers = require('../helpers/route-helpers/users-helper');
 router.post('/login', (req, res) => {
     models.User.findOne({
             where: { username: req.body.username },
-            attributes: ['email', 'password']
+            attributes: ['id', 'username', 'email', 'password']
         })
         .then(async user => {
+            console.log('THIS IS THE FUCKING DATA:', user.dataValues)
             if (!user) return { success: false, message: 'Username or password error. Could not log in' };
             return helpers.checkPassword(req.body.password, user.password, user);
         })

@@ -8,6 +8,7 @@ class LogIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: 0,
             username: '',
             password: '',
             hasError: false,
@@ -34,11 +35,13 @@ class LogIn extends React.Component {
         .then(json => {
             if (json.err) {
                 this.setState({hasError:true,userMessage:json.error});
-                console.log('STATE:',this.state)
                 return false;
             }
-            this.setState({userMessage:json.message})
-            this.props.dispatch1(json.token, json.username);
+            //console.log('JSON',json);
+            this.setState({userMessage:json.message,id:json.id})
+            console.log('STATE:', this.state)
+            //console.log('TOKEN:',json.token,'ID:',json.id,'USERNAME:',json.username)
+            this.props.dispatch1(json.token, json.id, json.username);
         }).catch(error => {console.log(error)});
     }
 
@@ -115,8 +118,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        dispatch1: (token, username) => {
-            dispatch(jwtAdd(token, username))
+        dispatch1: (token, id, username) => {
+            dispatch(jwtAdd(token, id, username))
         }
     }
 }

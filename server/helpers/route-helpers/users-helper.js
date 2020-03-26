@@ -18,7 +18,11 @@ function checkPassword(passwordToCheck, storedPassword, user) {
             else if (isMatch) {
                 resolve({
                     token: await jwt.sign({ username: user.username },
-                        process.env.ACCESS_TOKEN_SECRET, { expiresIn: '12h' })
+                        process.env.ACCESS_TOKEN_SECRET, { expiresIn: '12h' }),
+                    id: user.dataValues.id,
+                    email: user.dataValues.email,
+                    password: user.dataValues.password,
+                    username: user.username
                 })
             } else {
                 resolve({ error: 'Username or password error. Could not log in.' })
