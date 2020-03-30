@@ -10,14 +10,21 @@ router.post('/login', (req, res) => {
             attributes: ['id', 'username', 'email', 'password']
         })
         .then(async user => {
+            if (!user) {
+                return {
+                    success: false,
+                    message: 'Incorrect credentials entered. Could not log in.'
+                }
+            }
             //console.log('User Data:', user.dataValues)
-            if (!user) return { success: false, message: 'Username or password error. Could not log in' };
+            //if (!user) return { success: false, message: 'Incorrect credentials entered. Could not log in' };
             return helpers.checkPassword(req.body.password, user.password, user);
         })
         .then(response => {
             res.json(response);
         })
         .catch(err => {
+            console.log('err', err);
             res.statusCode = 500;
             res.json(err);
         })

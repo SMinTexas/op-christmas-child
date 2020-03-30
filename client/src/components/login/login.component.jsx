@@ -33,13 +33,14 @@ class LogIn extends React.Component {
         })
         .then(response => response.json())
         .then(json => {
-            if (json.err) {
-                this.setState({hasError:true,userMessage:json.error});
+            console.log('json',json, 'err');
+            if (json.success === false) {
+                this.setState({hasError:true,userMessage:json.message});
                 return false;
             }
-            this.setState({userMessage:json.message,id:json.id})
+            this.setState({userMessage:json.message,id:json.id});
             this.props.dispatch1(json.token, json.id, json.username, json.password);
-        }).catch(error => {console.log(error)});
+        }).catch(error => {console.log('this is the error',error)});
     }
 
     handleChange = event => {
