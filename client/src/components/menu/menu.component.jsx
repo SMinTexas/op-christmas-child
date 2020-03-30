@@ -55,7 +55,7 @@ class Menu extends Component {
                   <Link to="/">Home</Link>
                 </li> */}
                 <li>
-                  <Link to='/'>Add Inventory</Link>
+                  <Link to='/add'>Add Inventory</Link>
                 </li>
                 <li>
                   <a onClick={e => this.handleLogoutClick()} >Logout</a>

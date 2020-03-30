@@ -10,7 +10,7 @@ router.post('/login', (req, res) => {
             attributes: ['id', 'username', 'email', 'password']
         })
         .then(async user => {
-            console.log('THIS IS THE FUCKING DATA:', user.dataValues)
+            //console.log('User Data:', user.dataValues)
             if (!user) return { success: false, message: 'Username or password error. Could not log in' };
             return helpers.checkPassword(req.body.password, user.password, user);
         })

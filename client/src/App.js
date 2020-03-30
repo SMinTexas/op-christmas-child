@@ -8,6 +8,7 @@ import Menu from './components/menu/menu.component';
 import LogIn from './components/login/login.component';
 import Register from './components/register/register.component';
 import Dashboard from './components/dashboard/dashboard.component';
+import AddInventory from './components/add-inventory/add-inventory.component';
 
 const PrivateRoute = ({component: Component, ...rest}) => (    
   <Route {...rest} render={(props) => (
@@ -28,6 +29,8 @@ class App extends React.Component {
           <Route path='/login' component={LogIn} />
           <Route path='/register' component={Register} />
           <PrivateRoute path='/dashboard' exact component={Dashboard} 
+            isAuthenticated={this.props.jwt.isAuthenticated} />
+          <PrivateRoute path='/add' exact component={AddInventory}
             isAuthenticated={this.props.jwt.isAuthenticated} />
         </Switch>
       </Router>

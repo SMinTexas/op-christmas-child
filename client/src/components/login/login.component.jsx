@@ -37,11 +37,8 @@ class LogIn extends React.Component {
                 this.setState({hasError:true,userMessage:json.error});
                 return false;
             }
-            //console.log('JSON',json);
             this.setState({userMessage:json.message,id:json.id})
-            console.log('STATE:', this.state)
-            //console.log('TOKEN:',json.token,'ID:',json.id,'USERNAME:',json.username)
-            this.props.dispatch1(json.token, json.id, json.username);
+            this.props.dispatch1(json.token, json.id, json.username, json.password);
         }).catch(error => {console.log(error)});
     }
 
@@ -118,8 +115,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        dispatch1: (token, id, username) => {
-            dispatch(jwtAdd(token, id, username))
+        dispatch1: (token, id, username, password) => {
+            dispatch(jwtAdd(token, id, username, password))
         }
     }
 }

@@ -38,11 +38,11 @@ module.exports = {
             },
             price: {
                 allowNull: false,
-                type: Sequelize.DECIMAL
+                type: Sequelize.FLOAT
             },
             best_price: {
                 allowNull: true,
-                type: Sequelize.DECIMAL
+                type: Sequelize.FLOAT
             },
             last_purchase_dt: {
                 allowNull: true,
