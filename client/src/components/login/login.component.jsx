@@ -17,7 +17,8 @@ class LogIn extends React.Component {
     }
 
     validateForm() {
-        return this.state.username.length > 0 && this.state.password.length > 0;
+        //return this.state.username.length > 0 && this.state.password.length > 0;
+        return this.state.email.length > 0 && this.state.password.length > 0;
     }
 
     handleSubmit = (e) => {
@@ -27,7 +28,8 @@ class LogIn extends React.Component {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                username: this.state.username,
+                //username: this.state.username,
+                email: this.state.email,
                 password: this.state.password,
             })
         })
@@ -64,14 +66,22 @@ class LogIn extends React.Component {
             return (
                 <div className="login-form-container">
                     <form className='form' onSubmit={this.handleSubmit}>
-                        <input className='username-input'
+                        <input className='email-input'
+                            name='email'
+                            placeholder='Enter E-Mail'
+                            onChange={this.handleChange}
+                            value=''
+                            label='E-Mail'
+                            required
+                        />
+                        {/* <input className='username-input'
                             name='username'
                             placeholder='Enter Username'
                             onChange={this.handleChange}
                             value=''
                             label='UserName'
                             required
-                        />
+                        /> */}
                         <input className='password-input'
                             name='password'
                             type='password'
@@ -92,14 +102,22 @@ class LogIn extends React.Component {
         return (
             <div className="login-form-container">
                 <form className='form' onSubmit={this.handleSubmit}>
-                    <input className='username-input'
+                    <input className='email-input'
+                        name='email'
+                        placeholder='Enter E-Mail'
+                        onChange={this.handleChange}
+                        value={this.state.email}
+                        label='E-Mail'
+                        required
+                    />
+                    {/* <input className='username-input'
                         name='username'
                         placeholder='Enter Username'
                         onChange={this.handleChange}
                         value={this.state.username}
                         label='UserName'
                         required
-                    />
+                    /> */}
                     <input className='password-input'
                         name='password'
                         type='password'

@@ -6,7 +6,8 @@ const helpers = require('../helpers/route-helpers/users-helper');
 
 router.post('/login', (req, res) => {
     models.User.findOne({
-            where: { username: req.body.username },
+            //where: { username: req.body.username },
+            where: { email: req.body.email },
             attributes: ['id', 'username', 'email', 'password']
         })
         .then(async user => {
@@ -16,8 +17,6 @@ router.post('/login', (req, res) => {
                     message: 'Incorrect credentials entered. Could not log in.'
                 }
             }
-            //console.log('User Data:', user.dataValues)
-            //if (!user) return { success: false, message: 'Incorrect credentials entered. Could not log in' };
             return helpers.checkPassword(req.body.password, user.password, user);
         })
         .then(response => {
