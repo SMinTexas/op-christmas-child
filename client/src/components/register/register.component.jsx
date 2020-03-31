@@ -65,7 +65,10 @@ class Register extends React.Component {
             return <Redirect to='/login' />
         }
 
-        if (this.state.hasError) {
+        if (this.state.hasError === true) {
+
+            this.state.hasError = false;
+            
             return (
                 <div className="register-form-container">
                     <form className='form' onSubmit={this.handleSubmit}>

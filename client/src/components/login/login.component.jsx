@@ -35,7 +35,11 @@ class LogIn extends React.Component {
         .then(json => {
             console.log('json',json, 'err');
             if (json.success === false) {
-                this.setState({hasError:true,userMessage:json.message});
+                this.setState({
+                    hasError:true,
+                    userMessage:json.message
+                });
+                console.log('STATE:',this.state);
                 return false;
             }
             this.setState({userMessage:json.message,id:json.id});
@@ -54,6 +58,9 @@ class LogIn extends React.Component {
           }
 
         if (this.state.hasError === true) {
+
+            this.state.hasError = false;
+
             return (
                 <div className="login-form-container">
                     <form className='form' onSubmit={this.handleSubmit}>
@@ -79,6 +86,7 @@ class LogIn extends React.Component {
                     </form>
                 </div>
             );
+
         }
 
         return (
