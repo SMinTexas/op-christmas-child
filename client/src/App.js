@@ -18,6 +18,14 @@ const PrivateRoute = ({component: Component, ...rest}) => (
     )}/>
 )
 
+// const PrivateRoute1 = ({component: Component, ...rest}) => (    
+//   <Route {...rest} render={(props) => (
+//       rest.isAuthenticated === true
+//       ? <Component {...props} />
+//       : <Redirect to='/dashboard'/>
+//     )}/>
+// )
+
 class App extends React.Component {
   render() {
     return (

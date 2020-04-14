@@ -2,6 +2,32 @@ var express = require('express');
 const models = require('../models');
 var router = express.Router();
 
+//This is example code 7 April 2020
+// async function getEmployees() {
+//     var employeeList = await Employee.findAll().then(function(result) {
+//         console.log(result.length)
+//         console.log(result[0].employeeName)
+//         return result
+//     });
+//     employeeList[0].employeeName;
+// }
+
+router.post('/overall-count', async(req, res) => {
+    let userID = req.body.userid;
+
+    models.Inventories.findAll({
+        where: {
+            userid: userID
+        },
+        attributes: [
+            'category', [sequelize.fn('sum', sequelize.col('count')), 'Total']
+        ],
+        group: ['category'],
+        raw: true,
+        order: sequelize.literal('Total DESC')
+    })
+});
+
 router.post('/add', async(req, res) => {
     let userID = req.body.userid,
         category = req.body.category,
@@ -18,10 +44,11 @@ router.post('/add', async(req, res) => {
     models.Inventories.findOne({
         where: {
             userid: userID,
-            category: req.body.category,
-            item_name: req.body.itemname,
-            gender: req.body.gender,
-            age_range: req.body.age
+            category: category,
+            item_name: itemName,
+            gender: gender,
+            age_range: age,
+            description: description
         },
         attributes: [
             'id',
@@ -39,6 +66,7 @@ router.post('/add', async(req, res) => {
         ]
     }).then(inventory => {
         if (inventory) {
+            console.log('inventory item already exists')
             res.status(500).json({
                 success: false,
                 message: 'This item already exists'
@@ -51,17 +79,20 @@ router.post('/add', async(req, res) => {
                 gender: gender,
                 age_range: age,
                 description: description,
-                count: count,
-                price: price,
-                best_price: bestPrice,
-                last_purchase_dt: lastPurchase,
+                count: isNaN(count) ? 0 : count,
+                price: isNaN(price) ? 0 : price,
+                best_price: isNaN(bestPrice) ? 0 : bestPrice,
+                last_purchase_dt: lastPurchase.length == 0 ? null : lastPurchase,
                 notes: notes,
                 createdAt: new Date(),
                 updatedAt: new Date()
-            }).then(res.status(200).json({
-                success: true,
-                message: 'Item added to inventory list'
-            }));
+            }).then(result => {
+                res.status(200).json({
+                    id: result.id,
+                    success: true,
+                    message: 'Item added to inventory list'
+                })
+            });
         }
     })
 });

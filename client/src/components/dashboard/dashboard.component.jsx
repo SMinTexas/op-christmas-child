@@ -7,6 +7,9 @@ import { add as jwtAdd } from '../../redux/jwt-verification/actions';
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            userid: this.props.jwt.userid
+        }
     }
 
     render() {
