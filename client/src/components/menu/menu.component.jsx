@@ -55,6 +55,9 @@ class Menu extends Component {
                   <Link to="/">Home</Link>
                 </li> */}
                 <li>
+                  <Link to='/inventory'>Inventory</Link>
+                </li>
+                <li>
                   <Link to='/add'>Add Inventory</Link>
                 </li>
                 <li>

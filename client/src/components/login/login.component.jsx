@@ -60,13 +60,17 @@ class LogIn extends React.Component {
     }
 
     render() {
+        // if (this.props.jwt.isAuthenticated === true) {
+        //     return <Redirect to='/dashboard' />
+        //   }
         if (this.props.jwt.isAuthenticated === true) {
-            return <Redirect to='/dashboard' />
-          }
+            return <Redirect to='/inventory' />
+        }
 
         if (this.state.hasError === true) {
 
-            this.state.hasError = false;
+            //this.state.hasError = false;
+            this.setState({hasError: false})
 
             return (
                 <div className="login-form-container">

@@ -67,7 +67,8 @@ class Register extends React.Component {
 
         if (this.state.hasError === true) {
 
-            this.state.hasError = false;
+            //this.state.hasError = false;
+            this.setState({hasError: false})
             
             return (
                 <div className="register-form-container">

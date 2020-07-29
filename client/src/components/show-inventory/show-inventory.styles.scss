@@ -1,0 +1,86 @@
+.show-inventory-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-show-inventory {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 1200px;
+    width: 1200px;
+    height: 525px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+// .add-submit {
+//     font-family: "Roboto", sans-serif;
+//     text-transform: uppercase;
+//     outline: 0;
+//     background: #A9A9A9;
+//     width: 30%;
+//     border: 0;
+//     margin: 0 0 15px;
+//     padding: 15px;
+//     color: #FFFFFF;
+//     font-size: 14px;
+//     -webkit-transition: all 0.3 ease;
+//     transition: all 0.3 ease;
+//     cursor: pointer;
+//     float: right;
+// }
+.show-submit:hover,
+.show-submit:active,
+.show-submit:focus {
+    background: #002366;
+}
+
+.show-clear {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #A9A9A9;
+    width: 30%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+
+.show-clear:hover,
+.show-clear:active,
+.show-clear:focus {
+    background: #002366;
+}
+
+.show-cancel {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #A9A9A9;
+    width: 30%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    float: left;
+}
+
+.show-cancel:hover,
+.show-cancel:active,
+.show-cancel:focus {
+    background: #002366;
+}

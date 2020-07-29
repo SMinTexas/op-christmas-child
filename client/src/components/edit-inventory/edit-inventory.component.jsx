@@ -1,12 +1,12 @@
 import React from 'react';
-import './add-inventory.styles.scss';
+import './edit-inventory.styles.scss';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Redirect, Link } from 'react-router-dom';
 import { add as jwtAdd } from '../../redux/jwt-verification/actions';
 import Modal from '../dialog/dialog.component';
 
-class AddInventory extends React.Component {
+class EditInventory extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -48,7 +48,7 @@ class AddInventory extends React.Component {
     handleInsert = (event) => {
         event.preventDefault();
 
-        fetch('/inventories/add', {
+        fetch('/inventories/edit', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -133,8 +133,8 @@ class AddInventory extends React.Component {
     }
 
     render() {
-        // console.log('Render Triggered')
-        // console.log('state:',this.state);
+        console.log('Render Triggered')
+        console.log('state:',this.state);
         if (this.state.recordInserted === true) {
 
             console.log('Record Inserted')
@@ -158,7 +158,7 @@ class AddInventory extends React.Component {
         // }
 
         return (
-            <div className="add-inventory-form-container">
+            <div className="edit-inventory-form-container">
                 {/* <form id = 'form-add' className='form-add-inventory' onSubmit={this.handleSubmit}> */}
                 <form id = 'form-add' className='form-add-inventory'>
                     <h3>Add Inventory</h3>
@@ -254,10 +254,10 @@ class AddInventory extends React.Component {
                         onChange={this.handleChange}
                         label='Notes'
                     />
-                    <button type='button' className='add-cancel' onClick={this.handleCancel}>Cancel</button>
+                    <button type='button' className='edit-cancel' onClick={this.handleCancel}>Cancel</button>
                     {/* <button type='reset' className='add-clear' onClick={this.handleClear}>Clear Entry</button> */}
-                    <button type='button' className='add-clear' onClick={this.handleClear}>Clear Entry</button>
-                    <button type='button' className='add-submit' onClick={this.handleInsert}>Add Item</button>
+                    <button type='button' className='edit-clear' onClick={this.handleClear}>Clear Entry</button>
+                    <button type='button' className='edit-submit' onClick={this.handleInsert}>Add Item</button>
                     {/* <button className='add-submit'><Modal 
                         isOpen={this.state.isModalOpen} onClose={this.toggleModal}>
                         </Modal>Add Item</button>
@@ -289,4 +289,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddInventory));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditInventory));

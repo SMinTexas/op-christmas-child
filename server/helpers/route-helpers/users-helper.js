@@ -11,13 +11,25 @@ const verifyJWT = (token, secret) => {
     }
 };
 
+// const verifyJWT = (credentials, secret) => {
+//     let decoded;
+//     try {
+//         return (decoded = jwt.verify(credentials, secret));
+//     } catch {
+//         return { error: 'Invalid or broken token!' };
+//     }
+// };
+
 function checkPassword(passwordToCheck, storedPassword, user) {
     return new Promise((resolve, reject) => {
         bcrypt.compare(passwordToCheck, storedPassword, async(err, isMatch) => {
             if (err) reject(err);
             else if (isMatch) {
                 resolve({
-                    token: await jwt.sign({ username: user.username },
+                    token: await jwt.sign({
+                            username: user.username,
+                            userid: user.dataValues.id
+                        },
                         process.env.ACCESS_TOKEN_SECRET, { expiresIn: '12h' }),
                     id: user.dataValues.id,
                     email: user.dataValues.email,

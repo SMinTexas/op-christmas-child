@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var inventoriesRouter = require('./routes/inventories');
 //var dashboardRouter = require('./routes/dashboard');
 
+
 var app = express();
 
 // view engine setup
@@ -24,7 +25,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/inventories', inventoriesRouter);
+//app.use('/inventories', inventoriesRouter);
+app.use('/inventory', inventoriesRouter);
+//app.use('/dashboard', inventoriesRouter);
 //app.use('/dashboard', dashboardRouter);
 
 // catch 404 and forward to error handler

@@ -9,13 +9,15 @@ import LogIn from './components/login/login.component';
 import Register from './components/register/register.component';
 import Dashboard from './components/dashboard/dashboard.component';
 import AddInventory from './components/add-inventory/add-inventory.component';
+// import EditInventory from './components/edit-inventory/edit-inventory.component';
+import InventoryList from './components/inventory-list/inventorylist.component';
 
-const PrivateRoute = ({component: Component, ...rest}) => (    
-  <Route {...rest} render={(props) => (
-      rest.isAuthenticated === true
-      ? <Component {...props} />
-      : <Redirect to='/'/>
-    )}/>
+const PrivateRoute = ({ component: Component, ...rest }) => ( 
+  <Route {...rest } render = {(props) => (
+            rest.isAuthenticated === true 
+            ? <Component {...props } /> 
+            : <Redirect to = '/' />
+        )}/>
 )
 
 // const PrivateRoute1 = ({component: Component, ...rest}) => (    
@@ -40,6 +42,12 @@ class App extends React.Component {
             isAuthenticated={this.props.jwt.isAuthenticated} />
           <PrivateRoute path='/add' exact component={AddInventory}
             isAuthenticated={this.props.jwt.isAuthenticated} />
+          <PrivateRoute path='/inventory' exact component={InventoryList}
+            isAuthenticated={this.props.jwt.isAuthenticated} />
+          {/* <PrivateRoute path='/inventory/:pageSize/:page' exact component={InventoryList}
+            isAuthenticated={this.props.jwt.isAuthenticated} /> */}
+          {/* <PrivateRoute path='/edit' exact component={EditInventory}
+            isAuthenticated={this.props.jwt.isAuthenticated} /> */}
         </Switch>
       </Router>
       </>
@@ -49,10 +57,9 @@ class App extends React.Component {
 
 //export default App;
 const mapStateToProps = (state) => {
-  return {
-    jwt: state.jwt
-  }
+    return {
+        jwt: state.jwt
+    }
 }
 
 export default connect(mapStateToProps)(App);
-
