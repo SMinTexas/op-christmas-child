@@ -11,6 +11,7 @@ import Dashboard from './components/dashboard/dashboard.component';
 import AddInventory from './components/add-inventory/add-inventory.component';
 // import EditInventory from './components/edit-inventory/edit-inventory.component';
 import InventoryList from './components/inventory-list/inventorylist.component';
+import InventoryTest from './components/inventory/inventory.component';
 
 const PrivateRoute = ({ component: Component, ...rest }) => ( 
   <Route {...rest } render = {(props) => (
@@ -43,6 +44,8 @@ class App extends React.Component {
           <PrivateRoute path='/add' exact component={AddInventory}
             isAuthenticated={this.props.jwt.isAuthenticated} />
           <PrivateRoute path='/inventory' exact component={InventoryList}
+            isAuthenticated={this.props.jwt.isAuthenticated} />
+          <PrivateRoute path='/inventorytest' exact component={InventoryTest}
             isAuthenticated={this.props.jwt.isAuthenticated} />
           {/* <PrivateRoute path='/inventory/:pageSize/:page' exact component={InventoryList}
             isAuthenticated={this.props.jwt.isAuthenticated} /> */}

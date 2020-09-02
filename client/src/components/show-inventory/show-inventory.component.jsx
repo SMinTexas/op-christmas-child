@@ -1,6 +1,6 @@
 import React from 'react';
 import './show-inventory.styles.scss';
-import { FaChevron } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa";
 
 export default class ShowInventory extends React.Component {
     constructor(props) {
@@ -120,7 +120,8 @@ export default class ShowInventory extends React.Component {
                     onClick={e => this.handleRowClick(e)}
                 >
                 <td>
-                    <button type='button' name='down' onClick={e => this.handleRowClick(e)}><i className="fas fa-chevron-right"></i></button>
+                    {/* <button type='button' name='down' onClick={e => this.handleRowClick(e)}><i className="fas fa-chevron-right"></i></button> */}
+                    <FaChevronRight size={10} color="red" />
                 </td>
                 <td>
                     <p></p>

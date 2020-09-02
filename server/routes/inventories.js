@@ -7,6 +7,30 @@ var router = express.Router();
 const dotenv = require('dotenv');
 dotenv.config();
 
+router.post('/inventorylist', async function(req, res, next) {
+    const decoded = await userHelpers.verifyJWT(req.body.token, process.env.ACCESS_TOKEN_SECRET)
+
+    models.Inventories.findAll({
+        where: { userid: decoded.userid },
+    }).then(userInventory => {
+        res.json(userInventory)
+    })
+})
+
+router.post('/inventorytest', async function(req, res, next) {
+    // const pageSize = Number(req.params.pageSize)
+    // const page = Number(req.params.page)
+    const decoded = await userHelpers.verifyJWT(req.body.token, process.env.ACCESS_TOKEN_SECRET)
+
+    models.Inventories.findAll({
+        where: { userid: decoded.userid },
+        // limit: pageSize,
+        // offset: pageSize * page
+    }).then(userInventory => {
+        res.json(userInventory)
+    })
+})
+
 router.post('/:pageSize/:page', async function(req, res, next) {
     const pageSize = Number(req.params.pageSize)
     const page = Number(req.params.page)
